@@ -165,7 +165,7 @@ Hydrawallet SDK sẽ build các module Cardano core (CBOR, crypto, address, tran
 ```mermaid
 graph TD
     A[App Browser] --> B[MeshJS SDK]
-    B --> C[@cardano-sdk]
+    B --> C[cardano-sdk]
     C --> D[Node Core Modules]
     D -->|Yêu cầu Polyfill| E[crypto-browserify, stream-browserify, buffer, util...]
     E -->|Tăng Bundle Size| F[Lỗi Runtime khi thiếu polyfill]
