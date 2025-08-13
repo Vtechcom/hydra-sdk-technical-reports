@@ -16,10 +16,9 @@ WebAssembly (WASM) provides a portable and efficient way to run compiled code in
 
 ## Example Integration
 ```javascript
-import init, { Address } from '@emurgo/cardano-serialization-lib-browser';
+import { Address } from '@emurgo/cardano-serialization-lib-browser';
 
 async function loadWasm() {
-    await init();
     const address = Address.from_bech32("addr1...");
     console.log(address.to_bytes());
 }
