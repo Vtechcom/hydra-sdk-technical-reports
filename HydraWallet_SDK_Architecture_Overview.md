@@ -1,43 +1,75 @@
-# HydraWallet SDK Architecture Overview
+# HydraWallet SDK – Architecture Overview
 
-## Introduction
-The HydraWallet SDK is designed to provide a robust, modular, and scalable interface for interacting with the Cardano blockchain and Hydra Head protocol. It enables developers to integrate wallet functionalities and Hydra Head management into their applications without deep knowledge of Cardano internals.
+## 1. Introduction
+The HydraWallet SDK is designed as a modular, high-performance toolkit for interacting with the Cardano blockchain, optimized for both browser and server environments.  
+The SDK provides developers with APIs, utilities, and WASM-based components for secure and efficient blockchain operations, removing heavy dependencies on NodeJS polyfills.
 
-## Core Design Principles
-1. **Modularity** – Each functional domain (wallet, transaction, Hydra Head management, blockchain queries) is isolated into separate modules.
-2. **Abstraction** – The SDK abstracts low-level Cardano serialization and Hydra protocol details.
-3. **Cross-Platform Compatibility** – Designed for browser, Node.js, and serverless environments.
-4. **WASM-first Approach** – Uses WebAssembly to avoid polyfill issues caused by Node.js-specific packages.
-5. **Developer Experience** – TypeScript-first design with detailed typings and ESLint + Prettier integration.
+---
 
-## Architecture Layers
-### 1. **Core Layer**
-   - Written in Rust and compiled to WebAssembly for maximum performance and compatibility.
-   - Handles:
-     - Cardano transaction building and signing.
-     - Cryptographic primitives.
-     - Hydra protocol message serialization/deserialization.
+## 2. Design Goals
+- **Cross-Environment Compatibility** – Fully functional in browsers, Node.js, and serverless environments.
+- **WASM First** – Core cryptographic and serialization logic implemented in WebAssembly for performance and compatibility.
+- **Lightweight & Modular** – Only import what you need, minimizing bundle size.
+- **Developer Friendly** – Clear API design with TypeScript typings.
+- **Future-Proof** – Avoid dependencies on packages that require NodeJS polyfills (e.g., `@cardano-sdk`).
 
-### 2. **API Layer**
-   - JavaScript/TypeScript bindings for the WASM core.
-   - Provides high-level APIs for:
-     - Wallet operations.
-     - Hydra Head lifecycle (init, commit, close, fan-out).
-     - Cardano node queries (UTxO, slot, block data).
+---
 
-### 3. **Integration Layer**
-   - Manages:
-     - Network communication (WebSocket, HTTP).
-     - Persistent storage (IndexedDB, LocalStorage for browser; file-based for Node.js).
-     - Logging and telemetry.
+## 3. Architecture Overview
 
-### 4. **Plugin System**
-   - Allows extension with custom transaction builders, Hydra Head strategies, or storage engines.
+### 3.1 Layers
+1. **Core Layer (WASM)**
+   - Handles serialization/deserialization of Cardano transactions.
+   - Cryptographic primitives using `cardano-serialization-lib` or custom optimized bindings.
+   - No Node.js dependencies.
 
-## Key Advantages
-- **No Polyfill Issues** – Avoids common Vite/Rollup bundling problems with Node.js modules.
-- **Better Performance** – Rust/WASM core reduces transaction building time.
-- **Future-proof** – Can integrate with other blockchains or sidechains by swapping protocol modules.
+2. **API Layer**
+   - Abstracts blockchain interactions (e.g., querying UTXOs, submitting transactions).
+   - Supports multiple backends (Ogmios, Blockfrost, custom APIs).
+   - Flexible configuration via dependency injection.
 
-## Related Reports
-- [Polyfill and Bundling Issues with @cardano-sdk and MeshJS](./Polyfill_and_bundling_issues_with_@cardano-sdk_and_MeshJS.md)
+3. **Utility Layer**
+   - Address manipulation, transaction building, CBOR encoding/decoding.
+   - Compatible with both browser and Node environments.
+
+4. **Integration Layer**
+   - Prebuilt connectors for wallets like Nami, Eternl, Gero, Lace.
+   - Simplified onboarding for dApp developers.
+
+---
+
+## 4. Technology Stack
+- **Language**: TypeScript
+- **Core Runtime**: WebAssembly (`wasm-bindgen`, `cardano-serialization-lib`)
+- **Build Tool**: Vite (for development) / Rollup (for library bundling)
+- **Testing**: Vitest
+- **Linting**: `@antfu/eslint-config`
+- **Type Checking**: `tsconfig` (TypeScript strict mode)
+
+---
+
+## 5. Deployment Targets
+- **Browser** – ESM build optimized for modern browsers.
+- **Node.js** – CJS build for server-side integration.
+- **WASM Standalone** – For embedding into environments like Rust, Go, or embedded systems.
+
+---
+
+## 6. Key Advantages Over @cardano-sdk
+- No Node.js core module dependencies → no need for polyfills in Vite/Rollup builds.
+- Faster execution due to WASM optimizations.
+- Smaller bundle size and better tree-shaking.
+- Easier integration into modern frontend frameworks.
+
+---
+
+## 7. Future Roadmap
+- Support for smart contract interactions (Plutus, Aiken bindings).
+- Multi-chain support (Cardano sidechains, Hydra).
+- Built-in transaction simulation & fee estimation.
+
+---
+
+**See also**:  
+- [Polyfill and bundling issues with @cardano-sdk and MeshJS (EN)](./Polyfill_and_bundling_issues_with_@cardano-sdk_and_MeshJS.md)  
+- [Polyfill and bundling issues with @cardano-sdk and MeshJS (VI)](./Polyfill_and_bundling_issues_with_@cardano-sdk_and_MeshJS.vi.md)
