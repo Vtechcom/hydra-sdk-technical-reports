@@ -3,10 +3,10 @@
 ## Giới thiệu
 Việc chuyển đổi từ CommonJS (CJS) sang ECMAScript Modules (ESM) đã giúp hệ sinh thái JavaScript tương thích tốt hơn với các công cụ hiện đại và hỗ trợ tree-shaking. Tuy nhiên, trong môi trường trình duyệt, việc trộn lẫn ESM và CJS có thể gây ra nhiều vấn đề, đặc biệt với các package thiết kế cho Node.js.
 
-Báo cáo này phân tích các vấn đề tương thích ESM/CJS gặp phải khi làm việc với các package trong HydraWallet SDK.
+Báo cáo này phân tích các vấn đề tương thích ESM/CJS gặp phải khi làm việc với các package trong Hydra SDK.
 
 ## Bối cảnh
-HydraWallet SDK được xây dựng chủ yếu cho môi trường web (Nuxt 3, Vue 3, TypeScript). Nó phụ thuộc vào nhiều package liên quan đến Cardano, trong đó có những package được viết cho Node.js và dựa vào CommonJS, Node polyfills hoặc `require()`.
+Hydra SDK được xây dựng chủ yếu cho môi trường web (Nuxt 3, Vue 3, TypeScript). Nó phụ thuộc vào nhiều package liên quan đến Cardano, trong đó có những package được viết cho Node.js và dựa vào CommonJS, Node polyfills hoặc `require()`.
 
 Mặc dù các công cụ như Vite hoặc Webpack 5 có thể cung cấp giải pháp polyfill hoặc chuyển đổi build-time, nhưng những giải pháp này thường không đủ khi xử lý các thư viện mật mã hoặc các thư viện Cardano SDK cấp thấp.
 
@@ -24,7 +24,7 @@ Mặc dù các công cụ như Vite hoặc Webpack 5 có thể cung cấp giải
    Module trộn `require()` và `import` có thể bị lỗi trong môi trường ESM nghiêm ngặt như Vite với `type: "module"`.
 
 ## Nghiên cứu tình huống: Các package phụ thuộc vào @cardano-sdk/crypto và @cardano-sdk/core
-HydraWallet SDK tích hợp nhiều package phụ thuộc gián tiếp vào `@cardano-sdk/crypto` và `@cardano-sdk/core`, ví dụ:
+Hydra SDK tích hợp nhiều package phụ thuộc gián tiếp vào `@cardano-sdk/crypto` và `@cardano-sdk/core`, ví dụ:
 
 - `libcardano-wallet`
 - `test-abc-sdk@apexfusionfoundation/vector-blaze-core`
