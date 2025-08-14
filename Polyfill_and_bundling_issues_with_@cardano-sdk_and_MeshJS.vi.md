@@ -1,10 +1,10 @@
 # BÁO CÁO KỸ THUẬT
 
-# Nguyên nhân không thể bundle `@cardano-sdk` cho browser và lý do lựa chọn WASM cho Hydrawallet SDK
+# Nguyên nhân không thể bundle `@cardano-sdk` cho browser và lý do lựa chọn WASM cho Hydra SDK
 
 ## 1. Bối cảnh
 
-Hydrawallet SDK ban đầu dựa trên **`@cardano-sdk`** nhằm tận dụng các chức năng:
+Hydra SDK ban đầu dựa trên **`@cardano-sdk`** nhằm tận dụng các chức năng:
 
 - Quản lý keypair và address
 - Thao tác giao dịch
@@ -17,7 +17,7 @@ Trong hệ sinh thái Cardano, **MeshJS SDK** cũng đang được sử dụng �
 
 ## 2. Vấn đề gặp phải
 
-Khi build Hydrawallet SDK hoặc MeshJS SDK với `@cardano-sdk` trong môi trường browser, xảy ra các lỗi điển hình:
+Khi build Hydra SDK hoặc MeshJS SDK với `@cardano-sdk` trong môi trường browser, xảy ra các lỗi điển hình:
 
 ### 2.1. **Lỗi môi trường Node.js**
 
@@ -141,13 +141,13 @@ Những trở ngại của các SDK dựa trên @cardano-sdk khi chạy trên br
 - Tăng hiệu năng.
 - Đảm bảo cross-platform.
 
-Hydrawallet SDK sẽ build các module Cardano core (CBOR, crypto, address, transaction) bằng **Rust + wasm-bindgen** hoặc **C/C++ + Emscripten** để thay thế hoàn toàn phần phụ thuộc `@cardano-sdk` cho môi trường browser, đồng thời tránh được các vấn đề của MeshJS khi bundle.
+Hydra SDK sẽ build các module Cardano core (CBOR, crypto, address, transaction) bằng **Rust + wasm-bindgen** hoặc **C/C++ + Emscripten** để thay thế hoàn toàn phần phụ thuộc `@cardano-sdk` cho môi trường browser, đồng thời tránh được các vấn đề của MeshJS khi bundle.
 
 ## 5. So sánh các giải pháp SDK Cardano cho môi trường browser
 
 ### 5.1 Bảng so sánh
 
-| Tiêu chí | **@cardano-sdk + Polyfill** | **MeshJS SDK** (dựa trên @cardano-sdk) | **Hydrawallet SDK** (WASM-based) |
+| Tiêu chí | **@cardano-sdk + Polyfill** | **MeshJS SDK** (dựa trên @cardano-sdk) | **Hydra SDK** (WASM-based) |
 | --- | --- | --- | --- |
 | **Khả năng chạy trên browser** | Có thể chạy nhưng cần polyfill Node core modules; một số API không khả dụng (`fs`, `net`). | Tương tự @cardano-sdk vì kế thừa toàn bộ core code; gặp lỗi runtime nếu thiếu polyfill. | Native browser support; không cần polyfill Node. |
 | **Kích thước bundle** | Rất lớn (hàng trăm KB – >1MB) do phải polyfill `crypto`, `stream`, `buffer`, v.v. | Lớn tương tự @cardano-sdk, cộng thêm overhead từ code wrapper của MeshJS. | Nhỏ gọn hơn (chỉ load .wasm + JS glue code). |
@@ -178,11 +178,11 @@ graph TD
 - Vite/Rollup không auto-polyfill → build fail hoặc runtime error.
 - Một số module không thể polyfill hoàn toàn (vd `fs`, `net`) → chức năng không hoạt động.
 
-2. **Hydrawallet SDK (WASM-based)**
+2. **Hydra SDK (WASM-based)**
 
 ```mermaid
 graph TD
-    A[App Browser] --> B[Hydrawallet SDK]
+    A[App Browser] --> B[Hydra SDK]
     B --> C[WASM Core Rust C++ AssemblyScript]
     C --> D[WebAssembly Runtime]
     D -->|Native Browser API| E[Crypto, CBOR, Tx Builder]
