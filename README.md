@@ -36,7 +36,7 @@ This repository serves as a centralized reference for:
 ---
 
 ## 🛠 Related Projects
-- [Hydra SDK](https://github.com/your-org/hydrawallet-sdk)
+- [Hydra SDK](https://sdk.hydrawallet.app)
 - [MeshJS](https://meshjs.dev)
 - [`@cardano-sdk`](https://github.com/input-output-hk/cardano-js-sdk)
 
