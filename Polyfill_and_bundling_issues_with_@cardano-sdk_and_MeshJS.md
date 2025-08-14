@@ -2,7 +2,7 @@
 
 ## 1. Context
 
-Hydrawallet SDK initially relied on **`@cardano-sdk`** to leverage functionalities such as:
+Hydra SDK initially relied on **`@cardano-sdk`** to leverage functionalities such as:
 
 - Keypair and address management
 - Transaction operations
@@ -15,7 +15,7 @@ In the Cardano ecosystem, **MeshJS SDK** is also used to build dApps. However, *
 
 ## 2. Issues Encountered
 
-When building Hydrawallet SDK or MeshJS SDK with `@cardano-sdk` in a browser environment, the following typical issues occur:
+When building Hydra SDK or MeshJS SDK with `@cardano-sdk` in a browser environment, the following typical issues occur:
 
 ### 2.1. **Node.js Environment Issues**
 
@@ -124,7 +124,7 @@ Browsers do not have the `exports` variable → crashes immediately upon loading
 
 ## 4. Conclusion
 
-Using `@cardano-sdk` in Hydrawallet SDK or MeshJS SDK for browser environments faces the following challenges:
+Using `@cardano-sdk` in Hydra SDK or MeshJS SDK for browser environments faces the following challenges:
 
 1. **Directly imports Node core modules** → unsupported in browsers.
 2. **Vite/Rollup does not auto-polyfill** → requires manual configuration, large bundles.
@@ -139,13 +139,13 @@ Using `@cardano-sdk` in Hydrawallet SDK or MeshJS SDK for browser environments f
 - Boosts performance.
 - Ensures cross-platform compatibility.
 
-Hydrawallet SDK will build Cardano core modules (CBOR, crypto, address, transaction) using **Rust + wasm-bindgen** or **C/C++ + Emscripten** to completely replace the dependency on `@cardano-sdk` for browser environments, while avoiding the bundling issues faced by MeshJS.
+Hydra SDK will build Cardano core modules (CBOR, crypto, address, transaction) using **Rust + wasm-bindgen** or **C/C++ + Emscripten** to completely replace the dependency on `@cardano-sdk` for browser environments, while avoiding the bundling issues faced by MeshJS.
 
 ## 5. Comparison of Cardano SDK Solutions for Browser Environments
 
 ### 5.1 Comparison Table
 
-| Criteria | **@cardano-sdk + Polyfill** | **MeshJS SDK** (based on @cardano-sdk) | **Hydrawallet SDK** (WASM-based) |
+| Criteria | **@cardano-sdk + Polyfill** | **MeshJS SDK** (based on @cardano-sdk) | **Hydra SDK** (WASM-based) |
 | --- | --- | --- | --- |
 | **Browser Compatibility** | Can run but requires polyfilling Node core modules; some APIs (`fs`, `net`) are unavailable. | Similar to @cardano-sdk as it inherits all core code; runtime errors without polyfills. | Native browser support; no Node polyfills needed. |
 | **Bundle Size** | Very large (hundreds of KB – >1MB) due to polyfills. | Large, similar to @cardano-sdk, with additional overhead from MeshJS wrapper code. | Smaller (only loads .wasm + JS glue code). |
@@ -176,11 +176,11 @@ graph TD
 - Vite/Rollup does not auto-polyfill → build fails or runtime errors.
 - Some modules cannot be fully polyfilled (e.g., `fs`, `net`) → functionality does not work.
 
-2. **Hydrawallet SDK (WASM-based)**
+2. **Hydra SDK (WASM-based)**
 
 ```mermaid
 graph TD
-    A[App Browser] --> B[Hydrawallet SDK]
+    A[App Browser] --> B[Hydra SDK]
     B --> C[WASM Core Rust C++ AssemblyScript]
     C --> D[WebAssembly Runtime]
     D -->|Native Browser API| E[Crypto, CBOR, Tx Builder]
