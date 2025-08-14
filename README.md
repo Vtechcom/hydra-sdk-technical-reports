@@ -1,6 +1,6 @@
-# HydraWallet SDK Technical Reports
+# Hydra SDK Technical Reports
 
-**Technical reports and analyses for HydraWallet SDK development** — In-depth documentation of design decisions, architecture, and problem-solving processes.  
+**Technical reports and analyses for Hydra SDK development** — In-depth documentation of design decisions, architecture, and problem-solving processes.  
 This repository contains detailed investigations into SDK compatibility, architecture design, and integration strategies with Cardano tooling.  
 All reports are available in both **English** and **Tiếng Việt**.
 
@@ -12,7 +12,7 @@ All reports are available in both **English** and **Tiếng Việt**.
 - **[English version](./ESM_CJS_compatibility_issues_in_browser_environments.md)**
 - **[Tiếng Việt](./ESM_CJS_compatibility_issues_in_browser_environments.vi.md)**
 
-### 2. HydraWallet SDK Architecture Overview
+### 2. Hydra SDK Architecture Overview
 - **[English version](./HydraWallet_SDK_Architecture_Overview.md)**
 - **[Tiếng Việt](./HydraWallet_SDK_Architecture_Overview.vi.md)**
 
@@ -36,7 +36,7 @@ This repository serves as a centralized reference for:
 ---
 
 ## 🛠 Related Projects
-- [HydraWallet SDK](https://github.com/your-org/hydrawallet-sdk)
+- [Hydra SDK](https://github.com/your-org/hydrawallet-sdk)
 - [MeshJS](https://meshjs.dev)
 - [`@cardano-sdk`](https://github.com/input-output-hk/cardano-js-sdk)
 
