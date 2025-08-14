@@ -1,7 +1,7 @@
-# HydraWallet SDK – Architecture Overview
+# Hydra SDK – Architecture Overview
 
 ## 1. Introduction
-The HydraWallet SDK is designed as a modular, high-performance toolkit for interacting with the Cardano blockchain, optimized for both browser and server environments.  
+The Hydra SDK is designed as a modular, high-performance toolkit for interacting with the Cardano blockchain, optimized for both browser and server environments.  
 The SDK provides developers with APIs, utilities, and WASM-based components for secure and efficient blockchain operations, removing heavy dependencies on NodeJS polyfills.
 
 ---
