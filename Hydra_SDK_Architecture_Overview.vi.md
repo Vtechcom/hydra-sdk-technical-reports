@@ -1,7 +1,7 @@
-# HydraWallet SDK – Tổng quan kiến trúc
+# Hydra SDK – Tổng quan kiến trúc
 
 ## 1. Giới thiệu
-HydraWallet SDK được thiết kế như một bộ công cụ mô-đun, hiệu năng cao để tương tác với blockchain Cardano, tối ưu cho cả môi trường trình duyệt và server.  
+Hydra SDK được thiết kế như một bộ công cụ mô-đun, hiệu năng cao để tương tác với blockchain Cardano, tối ưu cho cả môi trường trình duyệt và server.  
 SDK cung cấp API, tiện ích, và các thành phần chạy trên WASM để đảm bảo bảo mật và hiệu suất, đồng thời loại bỏ sự phụ thuộc nặng nề vào polyfill của NodeJS.
 
 ---
