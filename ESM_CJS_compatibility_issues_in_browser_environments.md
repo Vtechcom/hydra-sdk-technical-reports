@@ -3,10 +3,10 @@
 ## Introduction
 The transition from CommonJS (CJS) to ECMAScript Modules (ESM) has improved the JavaScript ecosystem's compatibility with modern tooling and tree-shaking. However, in browser environments, mixing ESM and CJS modules can introduce significant challenges, especially for packages designed for Node.js.
 
-This report analyzes the ESM/CJS compatibility issues encountered while working with packages in the HydraWallet SDK.
+This report analyzes the ESM/CJS compatibility issues encountered while working with packages in the Hydra SDK.
 
 ## Background
-The HydraWallet SDK is built primarily for web environments (Nuxt 3, Vue 3, TypeScript). It depends on multiple Cardano-related packages, some of which are written for Node.js and rely on CommonJS, Node polyfills, or require-based imports.
+The Hydra SDK is built primarily for web environments (Nuxt 3, Vue 3, TypeScript). It depends on multiple Cardano-related packages, some of which are written for Node.js and rely on CommonJS, Node polyfills, or require-based imports.
 
 While tools like Vite or Webpack 5 offer partial solutions via polyfills or build-time transformations, these are often insufficient when dealing with cryptographic libraries and low-level Cardano SDK dependencies.
 
@@ -24,7 +24,7 @@ While tools like Vite or Webpack 5 offer partial solutions via polyfills or buil
    Modules mixing `require()` and `import` can break under strict ESM environments like Vite with `type: "module"`.
 
 ## Case Study: Packages depending on @cardano-sdk/crypto and @cardano-sdk/core
-The HydraWallet SDK integrates several packages that indirectly depend on `@cardano-sdk/crypto` and `@cardano-sdk/core`. Examples include:
+The Hydra SDK integrates several packages that indirectly depend on `@cardano-sdk/crypto` and `@cardano-sdk/core`. Examples include:
 
 - `libcardano-wallet`
 - `test-abc-sdk@apexfusionfoundation/vector-blaze-core`
